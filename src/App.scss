@@ -8,8 +8,8 @@ body {
   justify-content: center;
   .ErrorNotification {
     color: red;
-    -webkit-box-shadow: 1px 1px 1px 2px #BFBFBF;
-    box-shadow: 1px 1px 1px 2px #BFBFBF;
+    -webkit-box-shadow: 1px 1px 30px 2px #BFBFBF;
+    box-shadow: 1px 1px 30px 2px #BFBFBF;
     text-shadow: 1px 1px 1px grey;
     width: auto;
     padding: 10px;
@@ -19,17 +19,74 @@ body {
   display: flex;
   flex-direction: row;
   justify-content: center;
+  -moz-box-shadow: 3px 3px 30px 5px rgba(204, 204, 204, 0.9);
+  -webkit-box-shadow: 3px 3px 30px 5px rgba(204, 204, 204, 0.9);
+  box-shadow: 3px 3px 30px 5px rgba(204, 204, 204, 0.9);
   width: auto;
+  input[type=text],
+  input[type=password] {
+    background-color: #efefef;
+    color: #666;
+    border: 2px solid #ddd;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    padding: 10px;
+    width: 300px;
+    box-sizing: border-box;
+    outline: none;
+  }
+  input[type=text]:focus,
+  input[type=password]:focus {
+    -webkit-box-shadow: 0 0 10px 2px rgba(204, 204, 204, 0.9);
+    -moz-box-shadow: 0 0 10px 2px rgba(204, 204, 204, 0.9);
+    box-shadow: 0 0 10px 2px rgba(204, 204, 204, 0.9);
+    border: 2px solid #a5cda5;
+    background-color: #e9f3e9;
+  }
+  input[type=submit] {
+    width: 300px;
+    box-sizing: border-box;
+    background-color: #36b03c;
+    color: #fff;
+    font-size: 1.0em;
+    font-weight: 600;
+    padding: 15px 10px;
+    margin-top: 10px;
+    border: none;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    cursor: pointer;
+    letter-spacing: 2px;
+  }
+  input[type=submit]:hover {
+    background-color: #37b93d;
+    -webkit-box-shadow: 0 0 10px 2px rgba(204, 204, 204, 0.9);
+    -moz-box-shadow: 0 0 10px 2px rgba(204, 204, 204, 0.9);
+    box-shadow: 0 0 10px 2px rgba(204, 204, 204, 0.9);
+  }
+  .Checkbox {
+
+  }
   label {
     color: #773060;
     padding: 0 4px;
   }
   .InputControl {
-    display: inline-block;
+    display: inline;
   }
-  .SubmitButton {
-    color: #773060;
-    font-size: 1.2em;
+  ::-webkit-input-placeholder {
+    opacity: 0;
+  }
+  ::-moz-placeholder {
+    opacity: 0;
+  }
+  :-ms-input-placeholder {
+    opacity: 0;
+  }
+  :-moz-placeholder {
+    opacity: 0;
   }
 }
 .DisplayNone {
@@ -39,3 +96,67 @@ body {
   display: flex;
   justify-content: center;
 }
+
+@media(max-width: 767px){
+  .FormApp {
+    flex-direction: column;
+    label {
+      display: none;
+    }
+    .Checkbox::after {
+      content: 'remember me';
+      width: 100px;
+      padding-left: 20px;
+      display: inline-block;
+      color: #666;
+    }
+  .InputControl {
+    display: block;
+  }
+  .SubmitButton {
+    color: #773060;
+    font-size: 1.2em;
+  }
+    ::-webkit-input-placeholder {
+      opacity: 1;
+    }
+    ::-moz-placeholder {
+      opacity: 1;
+    }
+    :-ms-input-placeholder {
+      opacity: 1;
+    }
+    :-moz-placeholder {
+      opacity: 1;
+    }
+}};
+@media(min-width: 768px) and (max-width: 1099px){
+  .FormApp {
+    flex-direction: column;
+    .InputControl {
+      display: block;
+    }
+    label {
+      display: inline-block;
+      width: 110px;
+    }
+    .SubmitButton {
+      color: #773060;
+      font-size: 1.2em;
+      min-width: 420px;
+    }
+    ::-webkit-input-placeholder {
+      opacity: 0;
+    }
+    ::-moz-placeholder {
+      opacity: 0;
+    }
+    :-ms-input-placeholder {
+      opacity: 0;
+    }
+    :-moz-placeholder {
+      opacity: 0;
+    }
+  }
+};
+

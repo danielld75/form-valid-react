@@ -22,13 +22,21 @@ class App extends Component {
   validEmail(e) {
     const email = e.target.value;
     const emailValid = email.match(/^([\w.%+-]+)@([\w-]+\.)+([\w]{2,})$/i);
-    !emailValid ? this.setState({notice: "invalid email", displayError: "ErrorNotification"}) : this.setState({email: email, notice: "", displayError: "DisplayNone"})
+    if(!emailValid) {
+      this.setState({notice: "invalid email", displayError: "ErrorNotification"});
+    } else {
+      this.setState({email: email, displayError: "DisplayNone"});
+    }
   }
 
   validPassword(e) {
     const password = e.target.value;
     const passwordValid = password.match(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?!.*\s).{6,}$/);
-    !passwordValid ? this.setState({notice: "invalid password", displayError: "ErrorNotification"}) : this.setState({password: password, notice: "", displayError: "DisplayNone"});
+    if(!passwordValid) {
+      this.setState({notice: "invalid password", displayError: "ErrorNotification"});
+    } else {
+      this.setState({password: password, displayError: "DisplayNone"});
+    }
   }
 
   handleInputChange() {
@@ -64,25 +72,22 @@ class App extends Component {
   renderUserForm() {
     return (
       <div className="App">
-        <form method="POST" action="" className="FormApp">
+        <form method="POST" onSubmit={(event) => this.submitForm(event)} action="" className="FormApp">
           <fieldset>
             <div className="InputControl">
-            <label htmlFor="email">email </label>
-            <input type="text" className="Email_input" name="email" id="email" value={this.props.email}
-                   onChange={(event) => this.validEmail(event)}
-                   required="required"/>
+              <label htmlFor="email">email </label>
+              <input type="text" className="EmailInput" name="email" id="email" placeholder="example@example.com" value={this.props.email} onChange={(event) => this.validEmail(event)} required="required"/>
             </div>
             <div className="InputControl">
-            <label htmlFor="password">password</label>
-            <input type="password" className="Password_input" name="password" id="password" value={this.props.password}
-                   onChange={(event) => this.validPassword(event)} required="required"/>
+              <label htmlFor="password">password</label>
+              <input type="password" className="PasswordInput" name="password" id="password" placeholder="password" value={this.props.password} onChange={(event) => this.validPassword(event)} required="required"/>
             </div>
             <div className="InputControl">
-            <label htmlFor="remember">remember me</label>
-            <input type="checkbox" onChange={this.handleInputChange.bind(this)} className="Checkbox" name="remember" id="remember" />
+              <label htmlFor="remember">remember me</label>
+              <input type="checkbox" onChange={this.handleInputChange.bind(this)} className="Checkbox" name="remember" id="remember" />
             </div>
             <div className="InputControl">
-            <input type="submit" className="SubmitButton" onClick={(event => this.submitForm(event))} value="login"/>
+              <input type="submit" className="SubmitButton"  value="login"/>
             </div>
           </fieldset>
         </form>
